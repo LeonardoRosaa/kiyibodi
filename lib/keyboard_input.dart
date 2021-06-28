@@ -4,12 +4,12 @@ import 'package:kiyibodi/keyboard_input_type.dart';
 class KeyboardInput extends StatelessWidget {
   final Widget child;
   final KeyboardInputType value;
-  final Function(KeyboardInputType) onTap;
+  final Function(KeyboardInputType)? onTap;
   final Function(KeyboardInputType)? onLongPress;
 
   const KeyboardInput({
     required this.child,
-    required this.onTap,
+    this.onTap,
     required this.value,
     this.onLongPress,
     Key? key,
@@ -18,14 +18,18 @@ class KeyboardInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        onTap(value);
-      },
-      onLongPress: () {
-        if (onLongPress != null) {
-          onLongPress!(value);
-        }
-      },
+      onTap: onTap != null
+          ? () {
+              onTap!(value);
+            }
+          : null,
+      onLongPress: onLongPress != null
+          ? () {
+              if (onLongPress != null) {
+                onLongPress!(value);
+              }
+            }
+          : null,
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Center(
