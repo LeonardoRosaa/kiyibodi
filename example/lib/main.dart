@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 350,
+        height: 300,
         child: Kiyibodi(
           keyboardController: keyboardController,
         ),
