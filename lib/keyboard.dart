@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:kiyibodi/keyboard_text.dart';
-
 import 'keyboard_controller.dart';
 import 'keyboard_input.dart';
+import 'keyboard_input_label.dart';
 import 'keyboard_input_type.dart';
 
 class Kiyibodi extends StatefulWidget {
@@ -56,13 +55,6 @@ class _KiyibodiState extends State<Kiyibodi> {
     }
   }
 
-  Widget keyboardInputLabel(String text) {
-    return Text(
-      text,
-      style: KeyboardText.keyboardInputText,
-    );
-  }
-
   void _resolveKeyboardInputType(KeyboardInputType keyboardInputType) {
     switch (keyboardInputType) {
       case KeyboardInputType.delete:
@@ -93,21 +85,21 @@ class _KiyibodiState extends State<Kiyibodi> {
             children: [
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('1'),
+                  child: KeyboardInputLabel('1'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.one,
                 ),
               ),
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('2'),
+                  child: KeyboardInputLabel('2'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.two,
                 ),
               ),
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('3'),
+                  child: KeyboardInputLabel('3'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.three,
                 ),
@@ -118,21 +110,21 @@ class _KiyibodiState extends State<Kiyibodi> {
             children: [
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('4'),
+                  child: KeyboardInputLabel('4'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.four,
                 ),
               ),
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('5'),
+                  child: KeyboardInputLabel('5'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.five,
                 ),
               ),
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('6'),
+                  child: KeyboardInputLabel('6'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.six,
                 ),
@@ -143,21 +135,21 @@ class _KiyibodiState extends State<Kiyibodi> {
             children: [
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('7'),
+                  child: KeyboardInputLabel('7'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.seven,
                 ),
               ),
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('8'),
+                  child: KeyboardInputLabel('8'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.eight,
                 ),
               ),
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('9'),
+                  child: KeyboardInputLabel('9'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.nine,
                 ),
@@ -171,7 +163,7 @@ class _KiyibodiState extends State<Kiyibodi> {
               ),
               Flexible(
                 child: KeyboardInput(
-                  child: keyboardInputLabel('0'),
+                  child: KeyboardInputLabel('0'),
                   onTap: widget.disabledNumbers ? null : onTap,
                   value: KeyboardInputType.zero,
                 ),
