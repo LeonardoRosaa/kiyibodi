@@ -41,19 +41,27 @@ class _KiyibodiState extends State<Kiyibodi> {
   @override
   void initState() {
     super.initState();
-    if (widget.onDone != null) {
-      widget.keyboardController.addListener(_handleOnDone);
-    }
+
+    widget.keyboardController.addListener(() {
+      _handleOnDone();
+      _handleDisabledNumber();
+    });
   }
 
   void _handleOnDone() {
-    final canCalledOnDoneFunction =
-        widget.keyboardController.value.length == widget.length;
-
-    if (canCalledOnDoneFunction) {
+    if (isLenghtEqualsKeyboardValue && widget.onDone != null) {
       widget.onDone!(widget.keyboardController.value);
     }
   }
+
+  void _handleDisabledNumber() {
+    if (isLenghtEqualsKeyboardValue) {
+      print('Disabled');
+    }
+  }
+
+  bool get isLenghtEqualsKeyboardValue =>
+      widget.keyboardController.value.length == widget.length;
 
   void _resolveKeyboardInputType(KeyboardInputType keyboardInputType) {
     switch (keyboardInputType) {
