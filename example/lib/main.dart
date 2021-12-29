@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kiyibodi/keyboard.dart';
 import 'package:kiyibodi/keyboard_controller.dart';
+import 'package:kiyibodi/kiyibodi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,11 +45,11 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: ValueListenableBuilder<String>(
+              child: ValueListenableBuilder<KiyibodiEditingValue>(
                 valueListenable: keyboardController,
-                builder: (context, text, _) {
+                builder: (context, value, _) {
                   return Text(
-                    text,
+                    value.text,
                     style: TextStyle(
                       fontSize: 42,
                     ),
@@ -62,6 +63,10 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Container(
         height: 300,
         child: Kiyibodi(
+          length: 4,
+          onDone: (value) {
+            print('Keyboard $value');
+          },
           keyboardController: keyboardController,
         ),
       ),

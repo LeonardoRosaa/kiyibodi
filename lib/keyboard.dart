@@ -1,161 +1,205 @@
 import 'package:flutter/material.dart';
-import 'package:kiyibodi/keyboard_text.dart';
+import 'package:kiyibodi/keyboard_editing_value.dart';
 
 import 'keyboard_controller.dart';
 import 'keyboard_input.dart';
+import 'keyboard_input_label.dart';
 import 'keyboard_input_type.dart';
 
-class Kiyibodi extends StatelessWidget {
+class Kiyibodi extends StatefulWidget {
+  /// The controller to keyboard.
   final KeyboardController keyboardController;
+
   final Widget? leftChild;
+
   final Widget? rightChild;
-  final bool disabledToIncrease;
+
+  /// Disabled [onTap] of numbers.
+  final bool disabledNumbers;
+
+  /// Lenght to disabled input for concat and call [onDone].
+  final int? length;
+
+  /// Called function when controller value lenght contains
+  /// same value of [length] parameter.
+  final void Function(String)? onDone;
 
   const Kiyibodi({
+    Key? key,
     required this.keyboardController,
     this.leftChild,
     this.rightChild,
-    this.disabledToIncrease = false,
-    Key? key,
+    this.disabledNumbers = false,
+    this.length,
+    this.onDone,
   }) : super(key: key);
 
-  Widget keyboardInputLabel(String text) {
-    return Text(
-      text,
-      style: KeyboardText.keyboardInputText,
-    );
+  @override
+  State<Kiyibodi> createState() => _KiyibodiState();
+}
+
+class _KiyibodiState extends State<Kiyibodi> {
+  var canEmitOnDone = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.keyboardController.addListener(() {
+      _handleOnDone();
+      _handleDisabledNumber();
+    });
   }
 
-  void _resolveKeyboardInputType(KeyboardInputType keyboardInputType) {
-    switch (keyboardInputType) {
-      case KeyboardInputType.delete:
-        keyboardController.deleteLast();
-        break;
-      case KeyboardInputType.longDelete:
-        keyboardController.clear();
-        break;
-      default:
-        keyboardController.increase(keyboardInputType.value.toString());
+  void _handleOnDone() {
+    if (isLenghtEqualsKeyboardValue && widget.onDone != null && canEmitOnDone) {
+      widget.onDone!(widget.keyboardController.value.text);
+      canEmitOnDone = false;
+    } else if (!isLenghtEqualsKeyboardValue) {
+      canEmitOnDone = true;
     }
   }
 
+  void _handleDisabledNumber() {
+    widget.keyboardController.disabledNumbers(isLenghtEqualsKeyboardValue);
+  }
+
+  bool get isLenghtEqualsKeyboardValue => widget.length == null
+      ? false
+      : widget.keyboardController.value.text.length >= widget.length!;
+
   void onTap(KeyboardInputType keyboardInputType) {
-    _resolveKeyboardInputType(keyboardInputType);
+    widget.keyboardController
+        .handleActionByKeyboardInputType(keyboardInputType);
   }
 
   void _onLongPress() {
-    _resolveKeyboardInputType(KeyboardInputType.longDelete);
+    widget.keyboardController
+        .handleActionByKeyboardInputType(KeyboardInputType.longDelete);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
+    return ValueListenableBuilder<KiyibodiEditingValue>(
+        valueListenable: widget.keyboardController,
+        builder: (context, editingValue, _) {
+          return Column(
             children: [
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('1'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.one,
-                ),
+              Row(
+                children: [
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('1'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.one,
+                      key: const Key('kiyibodiInputOne'),
+                    ),
+                  ),
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('2'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.two,
+                      key: const Key('kiyibodiInputTwo'),
+                    ),
+                  ),
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('3'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.three,
+                      key: const Key('kiyibodiInputThree'),
+                    ),
+                  ),
+                ],
               ),
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('2'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.two,
-                ),
+              Row(
+                children: [
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('4'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.four,
+                      key: const Key('kiyibodiInputFour'),
+                    ),
+                  ),
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('5'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.five,
+                      key: const Key('kiyibodiInputFive'),
+                    ),
+                  ),
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('6'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.six,
+                      key: const Key('kiyibodiInputSix'),
+                    ),
+                  ),
+                ],
               ),
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('3'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.three,
-                ),
+              Row(
+                children: [
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('7'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.seven,
+                      key: const Key('kiyibodiInputSeven'),
+                    ),
+                  ),
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('8'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.eight,
+                      key: const Key('kiyibodiInputEight'),
+                    ),
+                  ),
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('9'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.nine,
+                      key: const Key('kiyibodiInputNine'),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Flexible(
+                    child: widget.leftChild ?? Container(),
+                  ),
+                  Flexible(
+                    child: KeyboardInput(
+                      child: KeyboardInputLabel('0'),
+                      onTap: editingValue.disabled ? null : onTap,
+                      value: KeyboardInputType.zero,
+                      key: const Key('kiyibodiInputZero'),
+                    ),
+                  ),
+                  Flexible(
+                    child: KeyboardInput(
+                      child: widget.rightChild ??
+                          Icon(
+                            Icons.arrow_back_ios,
+                          ),
+                      onTap: onTap,
+                      value: KeyboardInputType.delete,
+                      onLongPress: (_) {
+                        _onLongPress();
+                      },
+                      key: const Key('kiyibodiInputRightChild'),
+                    ),
+                  ),
+                ],
               ),
             ],
-          ),
-          Row(
-            children: [
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('4'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.four,
-                ),
-              ),
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('5'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.five,
-                ),
-              ),
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('6'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.six,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('7'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.seven,
-                ),
-              ),
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('8'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.eight,
-                ),
-              ),
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('9'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.nine,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Flexible(
-                child: leftChild ?? Container(),
-              ),
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('0'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.zero,
-                ),
-              ),
-              Flexible(
-                child: KeyboardInput(
-                  child: rightChild ??
-                      Icon(
-                        Icons.arrow_back_ios,
-                      ),
-                  onTap: onTap,
-                  value: KeyboardInputType.delete,
-                  onLongPress: (_) {
-                    _onLongPress();
-                  },
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+          );
+        });
   }
 }
