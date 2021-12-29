@@ -9,16 +9,16 @@ class KeyboardController extends ValueNotifier<KiyibodiEditingValue> {
             ? KiyibodiEditingValue.empty
             : KiyibodiEditingValue(text: value));
 
-  void _clearText() {
+  void clearText() {
     value = value.copyWith(text: '');
   }
 
-  void _concatText(String text) {
+  void concatText(String text) {
     var oldText = value.text;
     value = value.copyWith(text: oldText += text);
   }
 
-  void _deleteLastText() {
+  void deleteLastText() {
     if (value.text.isNotEmpty) {
       value = value.copyWith(
         text: value.text.substring(
@@ -32,13 +32,13 @@ class KeyboardController extends ValueNotifier<KiyibodiEditingValue> {
   void handleActionByKeyboardInputType(KeyboardInputType keyboardInputType) {
     switch (keyboardInputType) {
       case KeyboardInputType.delete:
-        _deleteLastText();
+        deleteLastText();
         break;
       case KeyboardInputType.longDelete:
-        _clearText();
+        clearText();
         break;
       default:
-        _concatText(keyboardInputType.value.toString());
+        concatText(keyboardInputType.value.toString());
     }
   }
 
