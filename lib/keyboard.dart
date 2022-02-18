@@ -49,10 +49,10 @@ class Kiyibodi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
+    return Column(
+      children: [
+        Flexible(
+          child: Row(
             children: [
               Flexible(
                 child: KeyboardInput(
@@ -77,7 +77,9 @@ class Kiyibodi extends StatelessWidget {
               ),
             ],
           ),
-          Row(
+        ),
+        Flexible(
+          child: Row(
             children: [
               Flexible(
                 child: KeyboardInput(
@@ -102,7 +104,9 @@ class Kiyibodi extends StatelessWidget {
               ),
             ],
           ),
-          Row(
+        ),
+        Flexible(
+          child: Row(
             children: [
               Flexible(
                 child: KeyboardInput(
@@ -127,35 +131,35 @@ class Kiyibodi extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              Flexible(
-                child: leftChild ?? Container(),
+        ),
+        Row(
+          children: [
+            Flexible(
+              child: leftChild ?? Container(),
+            ),
+            Flexible(
+              child: KeyboardInput(
+                child: keyboardInputLabel('0'),
+                onTap: disabledToIncrease ? null : onTap,
+                value: KeyboardInputType.zero,
               ),
-              Flexible(
-                child: KeyboardInput(
-                  child: keyboardInputLabel('0'),
-                  onTap: disabledToIncrease ? null : onTap,
-                  value: KeyboardInputType.zero,
-                ),
+            ),
+            Flexible(
+              child: KeyboardInput(
+                child: rightChild ??
+                    Icon(
+                      Icons.arrow_back_ios,
+                    ),
+                onTap: onTap,
+                value: KeyboardInputType.delete,
+                onLongPress: (_) {
+                  _onLongPress();
+                },
               ),
-              Flexible(
-                child: KeyboardInput(
-                  child: rightChild ??
-                      Icon(
-                        Icons.arrow_back_ios,
-                      ),
-                  onTap: onTap,
-                  value: KeyboardInputType.delete,
-                  onLongPress: (_) {
-                    _onLongPress();
-                  },
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

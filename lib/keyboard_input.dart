@@ -30,11 +30,8 @@ class KeyboardInput extends StatelessWidget {
               }
             }
           : null,
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Center(
-          child: child,
-        ),
+      child: Center(
+        child: child,
       ),
     );
   }

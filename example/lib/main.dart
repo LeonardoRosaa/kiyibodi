@@ -43,26 +43,29 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: ValueListenableBuilder<String>(
-                valueListenable: keyboardController,
-                builder: (context, text, _) {
-                  return Text(
-                    text,
-                    style: TextStyle(
-                      fontSize: 42,
-                    ),
-                  );
-                },
+            Expanded(
+              flex: 4,
+              child: Center(
+                child: ValueListenableBuilder<String>(
+                  valueListenable: keyboardController,
+                  builder: (context, text, _) {
+                    return Text(
+                      text,
+                      style: TextStyle(
+                        fontSize: 42,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Kiyibodi(
+                keyboardController: keyboardController,
               ),
             ),
           ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        height: 300,
-        child: Kiyibodi(
-          keyboardController: keyboardController,
         ),
       ),
     );
