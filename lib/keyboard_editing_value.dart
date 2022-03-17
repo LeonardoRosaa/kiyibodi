@@ -1,13 +1,20 @@
 class KiyibodiEditingValue {
-  final String text;
-  final bool disabled;
-
   const KiyibodiEditingValue({
-    this.text = '',
-    this.disabled = false,
+    required this.text,
+    required this.disabled,
   });
 
-  static const empty = KiyibodiEditingValue();
+  const KiyibodiEditingValue.empty()
+      : this(
+          text: '',
+          disabled: false,
+        );
+
+  /// The field is a text does typed by user
+  final String text;
+
+  /// The field to store if Keyboard was disabled.
+  final bool disabled;
 
   KiyibodiEditingValue copyWith({
     String? text,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kiyibodi/keyboard.dart';
-import 'package:kiyibodi/keyboard_controller.dart';
 import 'package:kiyibodi/kiyibodi.dart';
 
 void main() {

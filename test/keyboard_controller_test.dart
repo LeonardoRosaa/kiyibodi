@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kiyibodi/keyboard_controller.dart';
 import 'package:kiyibodi/kiyibodi.dart';
 
 const initialText = '12345';

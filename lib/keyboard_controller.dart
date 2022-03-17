@@ -5,9 +5,14 @@ import 'keyboard_input_type.dart';
 
 class KeyboardController extends ValueNotifier<KiyibodiEditingValue> {
   KeyboardController({String? value})
-      : super(value == null
-            ? KiyibodiEditingValue.empty
-            : KiyibodiEditingValue(text: value));
+      : super(
+          value == null
+              ? KiyibodiEditingValue.empty()
+              : KiyibodiEditingValue(
+                  text: value,
+                  disabled: false,
+                ),
+        );
 
   void clearText() {
     value = value.copyWith(text: '');
