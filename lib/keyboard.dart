@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kiyibodi/keyboard_editing_value.dart';
+import 'package:kiyibodi/widgets/base/text.dart';
 
 import 'keyboard_controller.dart';
 import 'keyboard_input.dart';
-import 'keyboard_input_label.dart';
 import 'keyboard_input_type.dart';
 
 class Kiyibodi extends StatefulWidget {
@@ -89,7 +89,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                 children: [
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('1'),
+                      child: AppText.label('1'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.one,
                       key: const Key('kiyibodiInputOne'),
@@ -97,7 +97,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                   ),
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('2'),
+                      child: AppText.label('2'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.two,
                       key: const Key('kiyibodiInputTwo'),
@@ -105,7 +105,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                   ),
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('3'),
+                      child: AppText.label('3'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.three,
                       key: const Key('kiyibodiInputThree'),
@@ -117,7 +117,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                 children: [
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('4'),
+                      child: AppText.label('4'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.four,
                       key: const Key('kiyibodiInputFour'),
@@ -125,7 +125,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                   ),
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('5'),
+                      child: AppText.label('5'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.five,
                       key: const Key('kiyibodiInputFive'),
@@ -133,7 +133,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                   ),
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('6'),
+                      child: AppText.label('6'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.six,
                       key: const Key('kiyibodiInputSix'),
@@ -145,7 +145,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                 children: [
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('7'),
+                      child: AppText.label('7'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.seven,
                       key: const Key('kiyibodiInputSeven'),
@@ -153,7 +153,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                   ),
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('8'),
+                      child: AppText.label('8'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.eight,
                       key: const Key('kiyibodiInputEight'),
@@ -161,7 +161,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                   ),
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('9'),
+                      child: AppText.label('9'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.nine,
                       key: const Key('kiyibodiInputNine'),
@@ -176,7 +176,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                   ),
                   Flexible(
                     child: KeyboardInput(
-                      child: KeyboardInputLabel('0'),
+                      child: AppText.label('0'),
                       onTap: editingValue.disabled ? null : onTap,
                       value: KeyboardInputType.zero,
                       key: const Key('kiyibodiInputZero'),
