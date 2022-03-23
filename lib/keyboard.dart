@@ -17,8 +17,8 @@ class Kiyibodi extends StatefulWidget {
   /// Disabled [onTap] of numbers.
   final bool disabledNumbers;
 
-  /// Lenght to disabled input for concat and call [onDone].
-  final int? length;
+  /// Length to disabled input for concat and call [onDone].
+  final int? maxLength;
 
   /// Called function when controller value lenght contains
   /// same value of [length] parameter.
@@ -30,7 +30,7 @@ class Kiyibodi extends StatefulWidget {
     this.leftChild,
     this.rightChild,
     this.disabledNumbers = false,
-    this.length,
+    this.maxLength,
     this.onDone,
   }) : super(key: key);
 
@@ -52,21 +52,19 @@ class _KiyibodiState extends State<Kiyibodi> {
   }
 
   void _handleOnDone() {
-    if (isLenghtEqualsKeyboardValue && widget.onDone != null && canEmitOnDone) {
+    if (isMaxLength && widget.onDone != null && canEmitOnDone) {
       widget.onDone!(widget.keyboardController.value.text);
       canEmitOnDone = false;
-    } else if (!isLenghtEqualsKeyboardValue) {
+    } else if (!isMaxLength) {
       canEmitOnDone = true;
     }
   }
 
   void _handleDisabledNumber() {
-    widget.keyboardController.disabledNumbers(isLenghtEqualsKeyboardValue);
+    widget.keyboardController.disabledNumbers(isMaxLength);
   }
 
-  bool get isLenghtEqualsKeyboardValue => widget.length == null
-      ? false
-      : widget.keyboardController.value.text.length >= widget.length!;
+  bool get isMaxLength => widget.keyboardController.value.text.length == widget.maxLength;
 
   void onTap(KeyboardInputType keyboardInputType) {
     widget.keyboardController
@@ -190,7 +188,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                         Icon(
                           Icons.arrow_back_ios,
                         ),
-                    onTap: onTap,
+                    onTap: this.onTap,
                     value: KeyboardInputType.delete,
                     onLongPress: (_) {
                       _onLongPress();

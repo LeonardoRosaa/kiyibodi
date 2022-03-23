@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Container(
         height: 300,
         child: Kiyibodi(
-          length: 4,
+          maxLength: 4,
           onDone: (value) {
             print('Keyboard $value');
           },

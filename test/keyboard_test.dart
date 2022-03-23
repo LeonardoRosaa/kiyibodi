@@ -79,7 +79,7 @@ void main() {
             keyboardController: controller..value = controller.value.copyWith(
               text: '888'
             ),
-            length: 4,
+            maxLength: 4,
           ),
         ),
       ),
