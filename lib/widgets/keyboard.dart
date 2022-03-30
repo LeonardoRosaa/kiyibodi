@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kiyibodi/kiyibodi.dart';
-import 'package:kiyibodi/widgets/base/text.dart';
 import 'package:kiyibodi/widgets/flexible_keyboard_input.dart';
 
 class Kiyibodi extends StatefulWidget {
@@ -93,19 +92,16 @@ class _KiyibodiState extends State<Kiyibodi> {
               child: Row(
                 children: [
                   FlexibleKeyboardInput(
-                    child: AppText.label('1'),
                     onTap: onTap,
                     value: KeyboardInputType.one,
                     key: const Key('kiyibodiInputOne'),
                   ),
                   FlexibleKeyboardInput(
-                    child: AppText.label('2'),
                     onTap: onTap,
                     value: KeyboardInputType.two,
                     key: const Key('kiyibodiInputTwo'),
                   ),
                   FlexibleKeyboardInput(
-                    child: AppText.label('3'),
                     onTap: onTap,
                     value: KeyboardInputType.three,
                     key: const Key('kiyibodiInputThree'),
@@ -117,19 +113,16 @@ class _KiyibodiState extends State<Kiyibodi> {
               child: Row(
                 children: [
                   FlexibleKeyboardInput(
-                    child: AppText.label('4'),
                     onTap: onTap,
                     value: KeyboardInputType.four,
                     key: const Key('kiyibodiInputFour'),
                   ),
                   FlexibleKeyboardInput(
-                    child: AppText.label('5'),
                     onTap: onTap,
                     value: KeyboardInputType.five,
                     key: const Key('kiyibodiInputFive'),
                   ),
                   FlexibleKeyboardInput(
-                    child: AppText.label('6'),
                     onTap: onTap,
                     value: KeyboardInputType.six,
                     key: const Key('kiyibodiInputSix'),
@@ -141,19 +134,16 @@ class _KiyibodiState extends State<Kiyibodi> {
               child: Row(
                 children: [
                   FlexibleKeyboardInput(
-                    child: AppText.label('7'),
                     onTap: onTap,
                     value: KeyboardInputType.seven,
                     key: const Key('kiyibodiInputSeven'),
                   ),
                   FlexibleKeyboardInput(
-                    child: AppText.label('8'),
                     onTap: onTap,
                     value: KeyboardInputType.eight,
                     key: const Key('kiyibodiInputEight'),
                   ),
                   FlexibleKeyboardInput(
-                    child: AppText.label('9'),
                     onTap: onTap,
                     value: KeyboardInputType.nine,
                     key: const Key('kiyibodiInputNine'),
@@ -167,7 +157,6 @@ class _KiyibodiState extends State<Kiyibodi> {
                   child: widget.leftChild ?? Container(),
                 ),
                 FlexibleKeyboardInput(
-                  child: AppText.label('0'),
                   onTap: onTap,
                   value: KeyboardInputType.zero,
                   key: const Key('kiyibodiInputZero'),

@@ -7,11 +7,11 @@ class FlexibleKeyboardInput extends StatelessWidget {
     Key? key,
     this.onTap,
     this.onLongPress,
+    this.child,
     required this.value,
-    required this.child,
   }) : super(key: key);
 
-  final Widget child;
+  final Widget? child;
 
   final KeyboardInputType value;
 
