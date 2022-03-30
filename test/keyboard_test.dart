@@ -13,7 +13,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: Kiyibodi(keyboardController: controller),
+          body: Kiyibodi(controller: controller),
         ),
       ),
     );
@@ -32,7 +32,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: Kiyibodi(
-            keyboardController: controller..value = controller.value.copyWith(
+            controller: controller..value = controller.value.copyWith(
               text: '8888'
             ),
           ),
@@ -54,7 +54,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: Kiyibodi(
-            keyboardController: controller..value = controller.value.copyWith(
+            controller: controller..value = controller.value.copyWith(
               text: '8888'
             ),
           ),
@@ -76,7 +76,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: Kiyibodi(
-            keyboardController: controller..value = controller.value.copyWith(
+            controller: controller..value = controller.value.copyWith(
               text: '888'
             ),
             maxLength: 4,

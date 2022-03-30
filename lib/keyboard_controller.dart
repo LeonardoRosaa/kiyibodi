@@ -52,4 +52,6 @@ class KeyboardController extends ValueNotifier<KiyibodiEditingValue> {
       value = value.copyWith(disabled: disabled);
     }
   }
+
+  bool isMaxLength(int? max) => value.text.length == max;
 }

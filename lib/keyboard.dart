@@ -8,7 +8,7 @@ import 'keyboard_input_type.dart';
 
 class Kiyibodi extends StatefulWidget {
   /// The controller to keyboard.
-  final KeyboardController keyboardController;
+  final KeyboardController controller;
 
   final Widget? leftChild;
 
@@ -26,12 +26,12 @@ class Kiyibodi extends StatefulWidget {
 
   const Kiyibodi({
     Key? key,
-    required this.keyboardController,
     this.leftChild,
     this.rightChild,
     this.disabledNumbers = false,
     this.maxLength,
     this.onDone,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -39,50 +39,55 @@ class Kiyibodi extends StatefulWidget {
 }
 
 class _KiyibodiState extends State<Kiyibodi> {
-  var canEmitOnDone = true;
+  /// One of condititions for control whether to emits `onDone` method.
+  var _canDone = true;
 
   @override
   void initState() {
     super.initState();
 
-    widget.keyboardController.addListener(() {
+    _controller.addListener(() {
       _handleOnDone();
       _handleDisabledNumber();
     });
   }
 
   void _handleOnDone() {
-    if (isMaxLength && widget.onDone != null && canEmitOnDone) {
-      widget.onDone!(widget.keyboardController.value.text);
-      canEmitOnDone = false;
-    } else if (!isMaxLength) {
-      canEmitOnDone = true;
+    if (_canProccessOnDone) {
+      widget.onDone!(_controller.value.text);
+      _canDone = false;
+    } else if (!_isMaxLength) {
+      _canDone = true;
     }
   }
 
   void _handleDisabledNumber() {
-    widget.keyboardController.disabledNumbers(isMaxLength);
+    _controller.disabledNumbers(_isMaxLength);
   }
 
-  bool get isMaxLength =>
-      widget.keyboardController.value.text.length == widget.maxLength;
-
-  void onTap(KeyboardInputType keyboardInputType) {
-    widget.keyboardController
-        .handleActionByKeyboardInputType(keyboardInputType);
+  void _onTap(KeyboardInputType keyboardInputType) {
+    _controller.handleActionByKeyboardInputType(keyboardInputType);
   }
 
   void _onLongPress() {
-    widget.keyboardController
-        .handleActionByKeyboardInputType(KeyboardInputType.longDelete);
+    _controller.handleActionByKeyboardInputType(KeyboardInputType.longDelete);
   }
+
+  /// Verify whether emits `onDone` method
+  bool get _canProccessOnDone => _isMaxLength && widget.onDone != null && _canDone;
+
+  /// Verify [controller.value.text] length is equals [maxLength]
+  bool get _isMaxLength => _controller.isMaxLength(widget.maxLength);
+
+  /// The short access for [widget.controller]
+  KeyboardController get _controller => widget.controller;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<KiyibodiEditingValue>(
-      valueListenable: widget.keyboardController,
+      valueListenable: _controller,
       builder: (context, editingValue, _) {
-        final onTap = editingValue.disabled ? null : this.onTap;
+        final onTap = editingValue.disabled ? null : this._onTap;
 
         return Column(
           children: [
@@ -174,7 +179,7 @@ class _KiyibodiState extends State<Kiyibodi> {
                       Icon(
                         Icons.arrow_back_ios,
                       ),
-                  onTap: this.onTap,
+                  onTap: this._onTap,
                   value: KeyboardInputType.delete,
                   onLongPress: (_) {
                     _onLongPress();

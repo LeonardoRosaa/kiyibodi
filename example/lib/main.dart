@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
           onDone: (value) {
             print('Keyboard $value');
           },
-          keyboardController: keyboardController,
+          controller: keyboardController,
         ),
       ),
     );
