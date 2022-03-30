@@ -43,7 +43,7 @@ class KeyboardController extends ValueNotifier<KiyibodiEditingValue> {
         clearText();
         break;
       default:
-        concatText(keyboardInputType.value.toString());
+        concatText(keyboardInputType.getText()!);
     }
   }
 
