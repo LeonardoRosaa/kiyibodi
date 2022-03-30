@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kiyibodi/keyboard_input_type.dart';
+import 'package:kiyibodi/foundation/keyboard_input_type.dart';
 
 class KeyboardInkWell extends StatelessWidget {
   const KeyboardInkWell({

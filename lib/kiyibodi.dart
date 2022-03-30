@@ -1,5 +1,2 @@
-export 'keyboard.dart';
-export 'keyboard_controller.dart';
-export 'widgets/keyboard_input.dart';
-export 'keyboard_input_type.dart';
-export 'keyboard_editing_value.dart';
+export 'widgets/widgets.dart' show KeyboardInput, Kiyibodi;
+export 'foundation/foundation.dart';

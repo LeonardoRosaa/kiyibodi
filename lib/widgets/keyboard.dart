@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:kiyibodi/keyboard_editing_value.dart';
+import 'package:kiyibodi/kiyibodi.dart';
 import 'package:kiyibodi/widgets/base/text.dart';
 import 'package:kiyibodi/widgets/flexible_keyboard_input.dart';
 
-import 'keyboard_controller.dart';
-import 'keyboard_input_type.dart';
-
 class Kiyibodi extends StatefulWidget {
+  const Kiyibodi({
+    Key? key,
+    this.leftChild,
+    this.rightChild,
+    this.maxLength,
+    this.onDone,
+    this.disabledNumbers = false,
+    required this.controller,
+  }) : super(key: key);
+
   /// The controller to keyboard.
   final KeyboardController controller;
 
@@ -23,16 +30,6 @@ class Kiyibodi extends StatefulWidget {
   /// Called function when controller value lenght contains
   /// same value of [length] parameter.
   final void Function(String)? onDone;
-
-  const Kiyibodi({
-    Key? key,
-    this.leftChild,
-    this.rightChild,
-    this.disabledNumbers = false,
-    this.maxLength,
-    this.onDone,
-    required this.controller,
-  }) : super(key: key);
 
   @override
   State<Kiyibodi> createState() => _KiyibodiState();
@@ -74,7 +71,8 @@ class _KiyibodiState extends State<Kiyibodi> {
   }
 
   /// Verify whether emits `onDone` method
-  bool get _canProccessOnDone => _isMaxLength && widget.onDone != null && _canDone;
+  bool get _canProccessOnDone =>
+      _isMaxLength && widget.onDone != null && _canDone;
 
   /// Verify [controller.value.text] length is equals [maxLength]
   bool get _isMaxLength => _controller.isMaxLength(widget.maxLength);
