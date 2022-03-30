@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kiyibodi/keyboard_editing_value.dart';
 import 'package:kiyibodi/widgets/base/text.dart';
+import 'package:kiyibodi/widgets/flexible_keyboard_input.dart';
 
 import 'keyboard_controller.dart';
-import 'keyboard_input.dart';
 import 'keyboard_input_type.dart';
 
 class Kiyibodi extends StatefulWidget {
@@ -64,7 +64,8 @@ class _KiyibodiState extends State<Kiyibodi> {
     widget.keyboardController.disabledNumbers(isMaxLength);
   }
 
-  bool get isMaxLength => widget.keyboardController.value.text.length == widget.maxLength;
+  bool get isMaxLength =>
+      widget.keyboardController.value.text.length == widget.maxLength;
 
   void onTap(KeyboardInputType keyboardInputType) {
     widget.keyboardController
@@ -85,116 +86,100 @@ class _KiyibodiState extends State<Kiyibodi> {
 
         return Column(
           children: [
-            Row(
-              children: [
-                Flexible(
-                  child: KeyboardInput(
+            Flexible(
+              child: Row(
+                children: [
+                  FlexibleKeyboardInput(
                     child: AppText.label('1'),
                     onTap: onTap,
                     value: KeyboardInputType.one,
                     key: const Key('kiyibodiInputOne'),
                   ),
-                ),
-                Flexible(
-                  child: KeyboardInput(
+                  FlexibleKeyboardInput(
                     child: AppText.label('2'),
                     onTap: onTap,
                     value: KeyboardInputType.two,
                     key: const Key('kiyibodiInputTwo'),
                   ),
-                ),
-                Flexible(
-                  child: KeyboardInput(
+                  FlexibleKeyboardInput(
                     child: AppText.label('3'),
                     onTap: onTap,
                     value: KeyboardInputType.three,
                     key: const Key('kiyibodiInputThree'),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            Row(
-              children: [
-                Flexible(
-                  child: KeyboardInput(
+            Flexible(
+              child: Row(
+                children: [
+                  FlexibleKeyboardInput(
                     child: AppText.label('4'),
                     onTap: onTap,
                     value: KeyboardInputType.four,
                     key: const Key('kiyibodiInputFour'),
                   ),
-                ),
-                Flexible(
-                  child: KeyboardInput(
+                  FlexibleKeyboardInput(
                     child: AppText.label('5'),
                     onTap: onTap,
                     value: KeyboardInputType.five,
                     key: const Key('kiyibodiInputFive'),
                   ),
-                ),
-                Flexible(
-                  child: KeyboardInput(
+                  FlexibleKeyboardInput(
                     child: AppText.label('6'),
                     onTap: onTap,
                     value: KeyboardInputType.six,
                     key: const Key('kiyibodiInputSix'),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            Row(
-              children: [
-                Flexible(
-                  child: KeyboardInput(
+            Flexible(
+              child: Row(
+                children: [
+                  FlexibleKeyboardInput(
                     child: AppText.label('7'),
                     onTap: onTap,
                     value: KeyboardInputType.seven,
                     key: const Key('kiyibodiInputSeven'),
                   ),
-                ),
-                Flexible(
-                  child: KeyboardInput(
+                  FlexibleKeyboardInput(
                     child: AppText.label('8'),
                     onTap: onTap,
                     value: KeyboardInputType.eight,
                     key: const Key('kiyibodiInputEight'),
                   ),
-                ),
-                Flexible(
-                  child: KeyboardInput(
+                  FlexibleKeyboardInput(
                     child: AppText.label('9'),
                     onTap: onTap,
                     value: KeyboardInputType.nine,
                     key: const Key('kiyibodiInputNine'),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Row(
               children: [
                 Flexible(
                   child: widget.leftChild ?? Container(),
                 ),
-                Flexible(
-                  child: KeyboardInput(
-                    child: AppText.label('0'),
-                    onTap: onTap,
-                    value: KeyboardInputType.zero,
-                    key: const Key('kiyibodiInputZero'),
-                  ),
+                FlexibleKeyboardInput(
+                  child: AppText.label('0'),
+                  onTap: onTap,
+                  value: KeyboardInputType.zero,
+                  key: const Key('kiyibodiInputZero'),
                 ),
-                Flexible(
-                  child: KeyboardInput(
-                    child: widget.rightChild ??
-                        Icon(
-                          Icons.arrow_back_ios,
-                        ),
-                    onTap: this.onTap,
-                    value: KeyboardInputType.delete,
-                    onLongPress: (_) {
-                      _onLongPress();
-                    },
-                    key: const Key('kiyibodiInputRightChild'),
-                  ),
+                FlexibleKeyboardInput(
+                  child: widget.rightChild ??
+                      Icon(
+                        Icons.arrow_back_ios,
+                      ),
+                  onTap: this.onTap,
+                  value: KeyboardInputType.delete,
+                  onLongPress: (_) {
+                    _onLongPress();
+                  },
+                  key: const Key('kiyibodiInputRightChild'),
                 ),
               ],
             ),

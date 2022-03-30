@@ -18,3 +18,5 @@ class KeyboardInputType {
   static const delete = const KeyboardInputType(index: 10);
   static const longDelete = const KeyboardInputType(index: 11);
 }
+
+typedef KeyboardInputTypeCallback = Function(KeyboardInputType);
